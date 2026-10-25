@@ -43,3 +43,13 @@ Demostración.
 $$n+1\le 2^h\ \Longrightarrow\ h\ge\log_2(n+1)\ \Longrightarrow\ h\ge\lceil\log_2(n+1)\rceil.\ \blacksquare$$
 Versión en términos de información. Hay $n+1$ resultados equiprobables en el peor caso, lo que requiere $\log_2(n+1)$ bits de información; cada comparación aporta como máximo 1 bit (dos resultados posibles). De ahí la cota.
 Conclusión de optimalidad. La búsqueda binaria realiza a lo sumo $\lceil\log_2(n+1)\rceil$ comparaciones de tipo $A[m]<x$ (Afirmación 2), y ningún algoritmo basado en comparaciones puede hacerlo mejor en el peor caso (Teorema). Las cotas coinciden exactamente, así que la búsqueda binaria es óptima, no solo asintóticamente sino en la constante: $\Theta(\log n)$ con constante 1 en el peor caso.
+
+### 4. Visualización experimental y simulación 
+
+Para complementar el análisis teórico anterior y verificar de manera empírica el comportamiento del algoritmo, en la carpeta `extra02` se incluye el código fuente completo en Python que automatiza la generación de cuatro recursos gráficos clave. Este material visual permite comprobar la evolución del invariante, la reducción del potencial en tiempo real y la correspondencia exacta entre la teoría de la información y la ejecución práctica de la búsqueda binaria.
+
+En primer lugar, el script genera la **Figura 1** (`fig1_traza_busqueda_binaria.png`) y un GIF animado como **Figura 2** (`fig2_zonas_busqueda_binaria.gif`), los cuales muestran una traza paso a paso sobre un arreglo concreto. En estas visualizaciones se desglosan las zonas delimitadas por los punteros $lo$ y $hi$, evidenciando cómo el tamaño del potencial $\Phi = hi - lo$ disminuye de manera estricta en cada iteración mientras el invariante se mantiene intacto. Esto ilustra de forma gráfica por qué la respuesta correcta siempre se encuentra atrapada dentro del intervalo activo hasta converger en un único punto donde $lo = hi = \text{RESP}$.
+
+Por otro lado, el código construye analíticamente los árboles de decisión reales para tamaños pequeños y medianos de arreglo, generando la **Figura 3** (`fig3_arbol_decision.png`). Esta representación muestra los casos para $n=3$ y $n=10$, destacando cómo cada nodo interno corresponde a una comparación binaria y cada hoja representa una posible respuesta indexada, resaltando además el camino crítico seguido para un valor de búsqueda específico.
+
+Finalmente, la **Figura 4** (`fig4_cota_informacion.png`) contrasta gráficamente la capacidad de los árboles de altura $h$ (con un límite de $2^h$ hojas) frente al número total de respuestas posibles $n+1$, graficando de forma empírica que la búsqueda binaria alcanza de manera estricta e impecable la cota inferior teórica de $\lceil\log_2(n+1)\rceil$ comparaciones para cualquier $1 \le n \le 64$.
