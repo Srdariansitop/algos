@@ -1,4 +1,5 @@
 # Pregunta 3: 
+
 Una pila con una operación mínimo que cuesta O(1) en el peor caso. Diseña la estructura, enuncia el invariante que la hace correcta y da el costo de cada operación.
 
 **Planteamiento.** Queremos un TAD pila que soporte las operaciones `push(x)` (apilar `x`), `pop()` (desapilar y devolver el tope), `top()` (devolver el tope sin quitarlo) y `min()` (devolver el menor elemento actualmente en la pila). La dificultad es que el mínimo cambia al hacer `pop`: si apilas `[5, 3, 8]` el mínimo es `3`; si haces `pop` dos veces, el mínimo pasa a ser `5`, y recalcular el mínimo tras cada `pop` recorriendo la pila costaría `Θ(n)`. Necesitamos, por tanto, que la pila “recuerde” cuál era el mínimo en cada momento del pasado. La idea central es que el mínimo de una pila es una función del prefijo de la pila (de la base hasta cada posición); como `push`/`pop` solo modifican el extremo, los prefijos intermedios nunca cambian mientras existan, así que basta guardar el mínimo de cada prefijo.
