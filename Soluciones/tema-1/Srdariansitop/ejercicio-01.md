@@ -354,3 +354,42 @@ Es decir, una computadora mil veces más rápida solo permite procesar alrededor
 En consecuencia, se confirma que para problemas con complejidad exponencial las mejoras de hardware tienen un efecto marginal. La solución eficiente no consiste en aumentar la capacidad de cómputo, sino en diseñar mejores algoritmos, aplicar técnicas de optimización, heurísticas o programación dinámica.
 
 Por tanto, este código valida numéricamente el análisis teórico y refuerza la conclusión principal del ejercicio: el crecimiento del tamaño de entrada frente a mejoras de hardware está determinado por la complejidad del algoritmo, no por la velocidad bruta de la máquina.
+
+
+
+##  Código
+
+Esta es la explicación de cada una de las visualizaciones generadas.
+
+### Figura 1. Presupuesto de operaciones
+
+`fig1_presupuesto_operaciones.png`
+
+Representa la mejora de capacidad computacional entre ambas computadoras. Compara el presupuesto original de \\(10^6\\) operaciones con el nuevo presupuesto de \\(10^9\\). Su objetivo es mostrar visualmente que una computadora mil veces más rápida dispone de mil veces más operaciones para resolver un problema durante la misma hora.
+
+### Figura 2. Comparación de tamaños de entrada
+
+`fig2_tamanos_de_entrada.png`
+
+Compara directamente cuánto crece el tamaño máximo de entrada para los dos algoritmos estudiados. En el caso cuadrático, pasa de 1000 a 31622 elementos, mientras que en el exponencial pasa de 19 a 29. Es la figura que mejor resume numéricamente la respuesta principal del ejercicio.
+
+### Figura 3. Factores de crecimiento
+
+`fig3_factores_de_crecimiento.png`
+
+Representa las expresiones teóricas obtenidas en la demostración: \\(\sqrt{k}\\) para el algoritmo cuadrático y \\(\log_2(k)\\) para el exponencial. Se destaca especialmente el punto \\(k=1000\\), permitiendo observar cómo ambas funciones responden de manera diferente ante el mismo incremento de velocidad del hardware.
+
+### Figura 4. Costos y presupuestos
+
+`fig4_costos_y_presupuestos.png`
+
+Muestra los costos de ejecución de ambos algoritmos junto con los presupuestos de operaciones de las dos computadoras. Las líneas horizontales representan los límites computacionales y las verticales señalan los tamaños máximos de entrada alcanzables. Permite comprender gráficamente por qué el crecimiento exponencial se vuelve tan restrictivo.
+
+### Figura 5. Evolución animada de la mejora del hardware
+
+`fig5_evolucion_mejora_hardware.gif`
+
+GIF · 10 etapas
+
+Esta animación muestra cómo evolucionan los resultados cuando el factor de velocidad aumenta progresivamente desde \\(k=1\\) hasta \\(k=1000\\). Presenta dos gráficos independientes: uno para el crecimiento multiplicativo del algoritmo cuadrático y otro para el incremento aditivo del exponencial. La última etapa permite visualizar la diferencia entre obtener aproximadamente 31.62 veces más entrada y solamente unos 10 elementos adicionales.
+
