@@ -169,3 +169,19 @@ La implementación usa aritmética exacta idealizada. Con flotantes, el redondeo
 - La memoria es O(n).
 
 **Resumen.** En una dimensión el algoritmo es más simple que en 2D: celdas de longitud δ en lugar de δ/2, 3 celdas a mirar en lugar de 25, y el mismo costo esperado O(n). Resuelve PC1 en tiempo lineal esperado en el modelo RAM con parte entera y hash, mientras que en árboles de decisión algebraicos es imposible hacerlo en menos de Ω(n log n).
+
+## Código
+
+**1. `fig1_problema.png` (el problema).** Dibuja 9 puntos aleatorios en la recta con el par más cercano marcado en rojo y su distancia d. Debajo, un gráfico de barras con los n−1 huecos consecutivos del orden, donde la barra roja es el mínimo. Muestra que PC1 pide un par de índices (i, j) y que, tras ordenar, la respuesta está entre los huecos consecutivos.
+
+**2. `fig2_reduccion.png` (la reducción ED ≤ PC1).** Es un diagrama de la demostración. La entrada de ED pasa por la identidad, con 0 pruebas, al árbol T que resuelve PC1. Cada hoja (i, j) se sustituye por un nodo que prueba el signo de xᵢ − xⱼ, con tres hijos: "<0 distintos", "=0 hay iguales" y ">0 distintos". El panel de la derecha resume la conclusión: T′ resuelve ED con profundidad T(n)+1, y por Ben-Or, PC1 = Ω(n log n).
+
+**3. `fig3_componentes_cota.png` (de dónde sale la cota).** A la izquierda, para n=3, el plano x₁+x₂+x₃=0 cortado por las rectas xᵢ=xⱼ en 3! = 6 regiones, cada una rotulada con su orden. Son las componentes conexas de "todos distintos". A la derecha, la curva log₃(n!) comparada con n log₂ n, con n y con n(n−1)/2. Ilustra que un árbol de profundidad h tiene como mucho 3ʰ hojas, y que con n! componentes hace falta h ≥ log₃ n! = Ω(n log n).
+
+**4. `fig4_modelo_floor.png` (por qué el algoritmo sale del modelo).** A la izquierda, la función ⌊x/δ⌋ como escalera discontinua frente a la recta x/δ, que sí es polinomio. A la derecha, la profundidad mínima log₃(M+1) que necesitaría un árbol para calcular ⌊x⌋ con x∈[0,M], que crece con la magnitud M, frente al costo 1 de la operación en la RAM. Es el argumento (a) de la sección 2: la parte entera no es una prueba de signo.
+
+**5. `fig5_rejilla_1d.png` (la rejilla en una dimensión).** Muestra la recta dividida en celdas de longitud δ, con puntos ya insertados y un punto nuevo en naranja. Las celdas k−1, k y k+1 aparecen en amarillo, porque solo en ellas puede haber un punto a distancia menor que δ. Un texto recuerda el invariante de que cada celda tiene como mucho un punto, y el título que son 3 celdas en 1D frente a 25 en 2D.
+
+**6. `fig6_algoritmo_incremental.gif` (animación paso a paso).** Ejecuta el algoritmo incremental aleatorio sobre 11 puntos y tiene 20 cuadros. En cada paso se ven la rejilla de lado δ, el punto que llega, las 3 celdas consultadas, el par más cercano actual en rojo y el valor de δ. Cuando δ baja, el cuadro lo indica con "se reconstruye la rejilla". Si δ no baja, indica que el punto se inserta en O(1). El último cuadro da el resultado.
+
+**7. `fig7_costos_experimentales.png` (experimento de costo).** Mide el algoritmo con contadores de operaciones para n entre 100 y 25 600, promediando 15 semillas. A la izquierda, en escala log-log, la rejilla queda por debajo de n log₂ n y de n(n−1)/2. A la derecha, las operaciones por elemento son casi constantes, alrededor de 6, y las reconstrucciones medidas quedan por debajo de la cota teórica 2 ln n. Confirma el O(n) esperado, pero es una medición en una RAM con ⌊·⌋ y hash, no una violación de la cota en árboles algebraicos.
